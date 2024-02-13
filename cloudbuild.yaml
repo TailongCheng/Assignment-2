@@ -12,6 +12,14 @@ steps:
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'us-central1-docker.pkg.dev/steady-cat-401619/tailong-100898513/nodejs-app:${COMMIT_SHA}']
 
+  # Update index.html title
+  - name: 'gcr.io/cloud-builders/gcloud'
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        sed -i 's/<title>.*<\/title>/<title>Assignment 2 - 100898513<\/title>/' src/static/index.html
+
   # Deploy the Docker container to Google Cloud Run
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: 'sh'
@@ -23,14 +31,6 @@ steps:
           --platform=managed \
           --region=us-central1 \
           --allow-unauthenticated
-
-  # Update index.html title
-  - name: 'gcr.io/cloud-builders/gcloud'
-    entrypoint: 'bash'
-    args:
-      - '-c'
-      - |
-        sed -i 's/<title>.*<\/title>/<title>Assignment 2 - 100898513<\/title>/' src/static/index.html
 
 options:
   # Set defaultLogsBucketBehavior to REGIONAL_USER_OWNED_BUCKET
