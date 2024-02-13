@@ -24,6 +24,14 @@ steps:
           --region=us-central1 \
           --allow-unauthenticated
 
+  # Update index.html title
+  - name: 'gcr.io/cloud-builders/gcloud'
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        sed -i 's/<title>.*<\/title>/<title>Assignment 2 - 100898513<\/title>/' src/static/index.html
+
 options:
   # Set defaultLogsBucketBehavior to REGIONAL_USER_OWNED_BUCKET
   # defaultLogsBucket: 'gs://your-build-logs-bucket' # Replace with your build logs bucket
