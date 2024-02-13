@@ -15,18 +15,3 @@ options:
   # Set defaultLogsBucketBehavior to REGIONAL_USER_OWNED_BUCKET
   # defaultLogsBucket: 'gs://your-build-logs-bucket' # Replace with your build logs bucket
   defaultLogsBucketBehavior: 'REGIONAL_USER_OWNED_BUCKET'
-
-triggers:
-- name: 'dc-tailong-100898513'
-  description: 'Trigger for building Docker image on push'
-  github:
-    owner: 'TailongCheng'  # Replace with your GitHub username
-    name: 'tailong-100898513'
-    push:
-      branch: 'main'
-  filename: 'cloudbuild.yaml'
-  substitutions:
-    _COMMIT_SHA: '$COMMIT_SHA'
-  build:
-    projectId: 'steady-cat-401619'
-  manual: true
