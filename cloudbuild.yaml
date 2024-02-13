@@ -15,10 +15,11 @@ steps:
   # Update index.html title
   - name: 'gcr.io/cloud-builders/gcloud'
     entrypoint: 'bash'
-    args:
-      - '-c'
-      - |
-        sed -i 's/<title>.*<\/title>/<title>Assignment 2 - 100898513<\/title>/' src/static/index.html
+  # Update index.html title
+  - name: 'gcr.io/cloud-builders/gcloud'
+    entrypoint: 'bash'
+    args: ['-c', 'sed -i \'s/<title>.*<\/title>/<title>Assignment 2 - 100898513<\/title>/\' us-central1-docker.pkg.dev/steady-cat-401619/tailong-100898513/src/static/index.html']
+
 
   # Deploy the Docker container to Google Cloud Run
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
